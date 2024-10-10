@@ -1,21 +1,21 @@
 import asyncio
-import os
 from websockets import serve
 from prometheus_client import start_http_server
 from handlers.websocket_handler import websocket_handler
 from utils.logger import setup_logging, logger
 from config import Config
-from dotenv import load_dotenv
-from utils.redis_client import RedisClient  # 移动到正确的位置以导入 RedisClient
-from redis.asyncio import Redis  # 添加这一行
-
-
-
-# 如果你不打算直接使用 `Redis` 这个变量，可以将以下行移除
-# redis = Redis(host=redis_host, port=redis_port, db=0)
+from utils.redis_client import RedisClient
 
 async def main():
-    """主函数：设置日志，加载配置，创建Redis连接池，启动WebSocket服务器。"""
+    """
+    主函数：设置日志，加载配置，创建Redis连接池，启动WebSocket服务器。
+    
+    1. 设置日志记录。
+    2. 加载配置文件。
+    3. 创建Redis连接池。
+    4. 启动Prometheus指标服务器。
+    5. 启动WebSocket服务器。
+    """
     setup_logging()
     logger.info("Initializing configuration")
     config = Config()
@@ -38,7 +38,7 @@ async def main():
         write_limit=config.websocket_write_limit,
     ):
         logger.info(f"WebSocket server started on {config.websocket_host}:{config.websocket_port}")
-        await asyncio.Future()  # Run forever
+        await asyncio.Future()  # 运行直到手动停止
 
 if __name__ == "__main__":
     try:
