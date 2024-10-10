@@ -38,18 +38,20 @@
    pip install -r requirements.txt
    ```
 
-### 运行服务器：
+### 运行服务器
 
    ```bash
    python src/app.py
    ```
 
 ### 使用 Docker 运行
-1. 拉取镜像文件
+
+1. 拉取镜像文件：
+
    ```bash
    docker pull zhangzhefang/websocket-server
-    ```
-   
+   ```
+
 2. 启动服务：
 
    ```bash
@@ -62,11 +64,22 @@
    docker-compose --env-file .env.development down
    ```
 
-
 ### 配置
 
 配置文件位于 [config.yaml](config.yaml)，可以根据需要进行修改，并支持实时更新。
 
-### 贡献
+## 贡献
 
 欢迎贡献代码和改进建议。请参阅 [贡献指南](CONTRIBUTING.md) 了解更多信息。
+
+## 许可证
+
+该项目根据 Apache-2.0 许可证的条款进行许可。详情请参见 [LICENSE](LICENSE) 文件。
+
+## 联系
+
+如有任何问题或建议，请联系 zhangzhefang@msn.cn。
+
+## 项目链接
+
+项目的 GitHub 仓库链接为: [WebSocket 服务器项目](https://github.com/zhangzhefang-github/websocket_project)
