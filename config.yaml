@@ -1,20 +1,20 @@
 websocket:
-  host: "0.0.0.0"
-  port: 8765
-  max_size: 2_000_000
-  max_queue: 32
-  read_limit: 2_000_000
-  write_limit: 2_000_000
+  host: "0.0.0.0"  # WebSocket 服务器监听的主机地址
+  port: 8765  # WebSocket 服务器监听的端口
+  max_size: 2_000_000  # WebSocket 消息的最大字节大小
+  max_queue: 32  # WebSocket 消息队列的最大大小
+  read_limit: 2_000_000  # WebSocket 读取的字节限制
+  write_limit: 2_000_000  # WebSocket 写入的字节限制
   update_interval: 1  # 更新间隔（秒）
 
 redis:
-  host: "localhost"
-  port: 6379
-  db: 0
-  max_connections: 10
-  encoding: "utf-8"
-  decode_responses: True
-  data_key: "real_time_data"
+  host: "localhost"  # Redis 服务器的主机地址
+  port: 6379  # Redis 服务器的端口
+  db: 0  # Redis 使用的数据库编号
+  max_connections: 10  # Redis 连接池的最大连接数
+  encoding: "utf-8"  # Redis 数据的编码格式
+  decode_responses: True  # 是否解码 Redis 响应
+  data_key: "real_time_data"  # Redis 中存储实时数据的键
 
 prometheus:
-  port: 8000
+  port: 8000  # Prometheus 服务器监听的端口
