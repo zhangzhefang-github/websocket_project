@@ -1,7 +1,7 @@
 # WebSocket Server Project
 
 <p align="center">
-    <br> <a href="README-EN.md">English</a> | 中文
+    <br> English | <a href="README.md">中文</a>
 </p>
 
 - [WebSocket Server Project](#websocket-server-project)
