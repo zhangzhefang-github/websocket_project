@@ -45,18 +45,23 @@
    ```
 
 ### 使用 Docker 运行
-
-1. 启动服务：
+1. 拉取镜像文件
+   ```bash
+   docker pull zhangzhefang/websocket-server
+    ```
+   
+2. 启动服务：
 
    ```bash
    docker-compose --env-file .env.development up -d
    ```
 
-2. 关闭服务：
+3. 关闭服务：
 
    ```bash
    docker-compose --env-file .env.development down
    ```
+
 
 ### 配置
 
