@@ -30,7 +30,7 @@
 
 ## 产品截图
 
-![产品截图](./docs/screenshot.png)
+<img src="./docs/screenshot.png" alt="产品截图" width="50%">
 
 ## 快速开始
 

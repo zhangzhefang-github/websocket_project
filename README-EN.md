@@ -32,7 +32,7 @@ This is a high-performance WebSocket server project with high scalability, high 
 
 ## Product Screenshot
 
-![Product Screenshot](./docs/screenshot.png)
+<img src="./docs/screenshot.png" alt="Product Screenshot" width="50%">
 
 ## Quick Start
 
