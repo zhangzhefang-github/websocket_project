@@ -1,0 +1,12 @@
+version: '3'
+services:
+  websocket_server:
+    build: .
+    ports:
+      - "8765:8765"
+      - "8000:8000"
+    environment:
+      REDIS_HOST: ${REDIS_HOST}  # 从环境变量中读取
+      REDIS_PORT: ${REDIS_PORT}  # 从环境变量中读取
+      DOCKER_ENV: "true"
+    image: ${DOCKER_USERNAME}/${IMAGE_NAME}  # 使用环境变量定义镜像名称

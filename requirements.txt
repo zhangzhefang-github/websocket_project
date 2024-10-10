@@ -1,0 +1,7 @@
+async-timeout==4.0.2
+attrs==23.1.0
+prometheus-client==0.17.1
+redis>=5.1.1
+websockets==11.0.3
+PyYAML==6.0.1
+python-dotenv==1.0.1

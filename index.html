@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket 实时数据展示</title>
+    <style>
+        body {
+            font-family: "宋体", "SimSun", serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #eaeaea;
+            background-image: url('https://example.com/chinese-pattern.png'); /* 添加中国风背景图案 */
+            background-size: cover;
+        }
+        h1 {
+            color: #8B0000; /* 深红色，增加中国风 */
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        #dataDisplay {
+            font-size: 28px;
+            font-weight: bold;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 2px solid #8B0000; /* 增加边框 */
+        }
+        #flag {
+            width: 200px;
+            height: 133px;
+            background-color: #DE2910; /* 中国国旗的红色 */
+            position: relative;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .star {
+            position: absolute;
+            background-color: #FFDE00; /* 中国国旗的黄色 */
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        .star.big {
+            width: 40px;
+            height: 40px;
+            top: 10px;
+            left: 10px;
+        }
+        .star.small {
+            width: 20px;
+            height: 20px;
+        }
+        .star.small:nth-child(2) { top: 5px; left: 70px; transform: rotate(30deg); }
+        .star.small:nth-child(3) { top: 25px; left: 90px; transform: rotate(60deg); }
+        .star.small:nth-child(4) { top: 50px; left: 90px; transform: rotate(120deg); }
+        .star.small:nth-child(5) { top: 70px; left: 70px; transform: rotate(150deg); }
+    </style>
+</head>
+<body>
+    <h1>实时数据展示</h1>
+    <div id="dataDisplay"></div>
+    <div id="flag">
+        <div class="star big"></div>
+        <div class="star small"></div>
+        <div class="star small"></div>
+        <div class="star small"></div>
+        <div class="star small"></div>
+    </div>
+
+    <script>
+        const dataDisplay = document.getElementById('dataDisplay');
+        const wsUrl = 'ws://172.19.136.212:8765';
+        let ws;
+        let reconnectAttempts = 0; // 记录重连尝试次数
+        const maxReconnectAttempts = 50; // 最大重连尝试次数
+
+        function connectWebSocket() {
+            ws = new WebSocket(wsUrl);
+
+            ws.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                dataDisplay.textContent = `最新数据: ${data.value}`;
+                reconnectAttempts = 0; // 重置重连次数
+            };
+
+            ws.onopen = function() {
+                console.log('WebSocket 连接已建立');
+                dataDisplay.textContent = '等待数据...';
+                reconnectAttempts = 0; // 重置重连次数
+            };
+
+            ws.onclose = function() {
+                console.log('WebSocket 连接已关闭');
+                dataDisplay.textContent = '连接已断开，正在尝试重新连接...';
+                if (reconnectAttempts < maxReconnectAttempts) {
+                    reconnectAttempts++;
+                    setTimeout(connectWebSocket, 5000);
+                } else {
+                    dataDisplay.textContent = '重连次数已达上限，请手动刷新页面。';
+                }
+            };
+
+            ws.onerror = function(error) {
+                console.error('WebSocket 出现错误: ', error);
+                dataDisplay.textContent = '连接错误，请检查网络或服务器状态';
+            };
+        }
+
+        connectWebSocket();
+    </script>
+</body>
+</html>
