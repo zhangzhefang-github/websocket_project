@@ -26,7 +26,6 @@ This is a high-performance WebSocket server project with high scalability, high 
 
 - **High Scalability**: Modular design for easy feature expansion and maintenance, supporting real-time updates.
 - **High Availability**: Optimized connection management and error logging to ensure service stability and real-time updates.
-- **Performance Monitoring**: Integrated with Prometheus for real-time monitoring and updates of key metrics.
 - **Redis Support**: Utilizes an asynchronous Redis client for efficient data retrieval, supporting real-time updates.
 - **Flexible Configuration**: Supports environment variables and configuration files for easy deployment and configuration, with real-time update support.
 

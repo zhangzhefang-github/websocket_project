@@ -16,5 +16,3 @@ redis:
   decode_responses: True  # 是否解码 Redis 响应
   data_key: "real_time_data"  # Redis 中存储实时数据的键
 
-prometheus:
-  port: 8000  # Prometheus 服务器监听的端口

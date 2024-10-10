@@ -24,10 +24,6 @@ async def main():
     # 使用RedisClient类创建连接池，而不是直接使用Redis 
     redis_client = RedisClient(config)
 
-    # 启动Prometheus指标服务器
-    start_http_server(config.prometheus_port)
-    logger.info(f"Prometheus metrics server started on port {config.prometheus_port}")
-
     async with serve(
         lambda ws, path: websocket_handler(ws, path, redis_client, config),
         config.websocket_host,
