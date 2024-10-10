@@ -21,3 +21,6 @@ logs/
 
 # VSCode settings
 .vscode/
+
+# Hide .env.development file
+.env.development
